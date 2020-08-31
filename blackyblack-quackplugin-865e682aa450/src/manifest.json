@@ -1,0 +1,10 @@
+{
+  "pluginVersion": 1,
+  "name": "Quack",
+  "myVersion": "v.1.4",
+  "shortDescription": "Atomic asset swap",
+  "infoUrl": "https://nxtforum.org/general-discussion/quack-nxt-atomic-asset-swap/",
+  "startPage": "p_quack",
+  "nrsVersion": "1.7.4",
+  "deactivated": false
+}

@@ -1,0 +1,77 @@
+<div id="p_quack_page" class="page">
+  <section id="" class="content-header">
+      <h1>
+          <span data-i18n="marketplace">Quack - Atomic Asset Swap</span>
+      </h1>
+  </section>
+  <section class="content" id="quack-intro">
+    <p>
+      Quack enables easy, safe and secure atomic swaps of Nxt-based Assets and
+Currencies. With Quack, Nxt users can now directly exchange Assets, Currencies
+or NXT with no counterparty risk. Quack swaps/exchanges are implemented on the
+Nxt blockchain using Phased Transactions. Use Quack to directly exchange
+Asset&lt;&gt;Asset, Asset&lt;&gt;Currency, or Currency&lt;&gt;Currency, swapping them directly
+without the need to convert to NXT.
+    </p>
+    <div class="panel panel-default" style="margin-bottom:4px;" id="transactions_type_navi_box">
+              <div class="panel-body">
+                  <div style="float:left;padding-top:3px;">
+                      <button type="button" id="quackCreateButton" class="btn btn-primary" data-i18n="CreateSwap" data-toggle="modal" data-target="#quackCreateModal">
+                        <span>Create Swap</span></button>
+                  </div>
+
+                  <div style="float:right;padding-top:3px;">
+                      <span data-i18n="quack_height">Current Height</span>&nbsp;
+                      <a href="#" class="btn btn-default" id="quackScanButton" data-target="#quackCreateModal" role="button" onclick="quackScan();">
+                        <i class="fa fa-refresh"></i>
+                        <span id="quackCurrentHeight">0</span></a>
+                  </div>
+              </div>
+          </div>
+  </section>
+  <section id="container" class="">
+    <!-- account field -->
+    <div class="row" style="text-align:center;display:none" id="quackMainAccountGroup">
+      <div style="width:300px;margin:0;margin:0 auto;padding:12px;">
+        <form style="text-align:center" autocomplete="off">
+          <label for="quackMainAccount" data-i18n="account">My Account</label>
+          <input type="text" name="account" class="form-control" placeholder="My Account" data-i18n="[placeholder]my_account" id="quackMainAccount" />
+        </form>
+      </div>
+    </div>
+  </section>
+  <section class="content" id="quackHistoryPage">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="box box-primary">
+                  <div class="box-header"><h3 class="box-title" data-i18n="recent_transactions">Swap History</h3></div>
+                  <div class="box-body no-padding">
+                      <div class="data-container" data-no-padding="true" data-extra="#dashboard_transactions_footer">
+                          <table class="table table-striped" id="quackHistoryTable">
+                              <thead>
+                              <tr>
+                                  <th data-i18n="started">Started</th>
+                                  <th data-i18n="finish_heigth">Finish Height</th>
+                                  <th data-i18n="type">Swap Type</th>
+                                  <th data-i18n="recipient">Sender</th>
+                                  <th data-i18n="sender">Recipient</th>
+                                  <th data-i18n="status">Status</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                                <!-- Data goes here -->
+                              </tbody>
+                          </table>
+                          <div class="data-loading-container"><img src="img/loading_indicator.gif" alt="Loading..." width="32" height="32"></div>
+                          <div class="data-empty-container"><p data-i18n="no_quack_history" id="quackHistoryError">No Quack history available.</p></div>
+                      </div>
+                  </div>
+                  <div class="box-footer" id="dashboard_transactions_footer" style="">
+                    <!-- <button class="btn btn-primary goto-page" data-page="transactions"><i class="fa fa-caret-right"></i>
+                        <span data-i18n="view_more">View More</span></button> -->
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+</div>

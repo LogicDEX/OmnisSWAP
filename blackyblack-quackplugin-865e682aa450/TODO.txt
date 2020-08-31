@@ -1,0 +1,2 @@
+- Add empty history notice.
+- Add animation to scan button.

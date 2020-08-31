@@ -1,0 +1,38 @@
+#p_quack_page .content-header {
+  background: url(../quack-logo-32.png) no-repeat 18px center;
+  padding-left: 64px;
+}
+#quackHistoryTable tr td {
+  vertical-align: middle;
+}
+#quackHistoryTable tr td .swapTypeInfo {
+  display: inline-block;
+  font-size: 12px;
+}
+.quackForm .form-group {
+  margin: 0;
+}
+.quackDetails table tr .finish {
+  width: 15%;
+}
+.quackDetails table tr .id {
+  width: 35%;
+}
+.quackDetails table tr .type {
+  color: #444;
+  text-align: center;
+  width: 10%;
+}
+.quackDetails table tr .quantity {
+  text-align: right;
+  width: 15%;
+}
+.quackDetails table tr .confirms {
+  text-align: right;
+  width: 13%;
+}
+.quackDetails table tr .status {
+  color: #444;
+  text-align: center;
+  width: 12%;
+}

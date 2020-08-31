@@ -1,0 +1,409 @@
+<div id="quackCreateModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Create Quack</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form" id="quackCreateForm" autocomplete="off" class="quackCreateForm">
+            <div class="callout callout-danger error_message" style="display:none"></div>
+
+            <!-- recipient field -->
+            <div class="form-group">
+              <label for="quackCreateRecipient" data-i18n="recipient">Recipient</label>
+              <input type="text" class="form-control" name="recipient" id="quackCreateRecipient" placeholder="Recipient Account" data-i18n="[placeholder]recipient_account" autofocus tabindex="1" />
+            </div>
+
+            <!-- swap group -->
+            <div class="row">
+              <!-- Send Part -->
+              <div class="col-md-12 quackForm" id="quackSendForm">
+                <div class="box box-primary s">
+                  <div class="box-header"><h3 class="box-title" data-i18n="send">Send</h3></div>
+                  <div class="box-body no-padding">
+                  <table class="table table-striped">
+                    <thead><tr>
+                        <th style="width:25%">Asset type</th>
+                        <th style="width:40%">Asset ID / Currency ID</th>
+                        <th style="width:25%">Quantity</th>
+                        <th style="width:10%">Row</th>
+                    </tr></thead>
+                    <tbody>
+                      <tr class="s0">
+                        <td>
+                            <!-- asset type dropdown -->
+                            <div class="form-group assetType">
+                              <select class="form-control" name="quackCreateAssetTypeName" id="s0" tabindex="101">
+                                <option value="NXT" data-i18n="nxt">NXT</option>
+                                <option value="A" data-i18n="asset">Asset</option>
+                                <option value="M" data-i18n="currency">Currency</option>
+                              </select>
+                            </div>
+                        </td>
+                        <td>
+                            <!-- asset field -->
+                            <div class="form-group assetTypeA" style="display:none;">
+                              <input type="text" class="form-control assetIdA" name="sendAsset[]" placeholder="Asset ID" data-i18n="[placeholder]asset" tabindex="102" />
+                            </div>
+                            <!-- currency field -->
+                            <div class="form-group assetTypeM" style="display:none">
+                              <input type="text" class="form-control assetIdM" name="sendCurrency[]" placeholder="Currency" data-i18n="[placeholder]currency" tabindex="103" />
+                            </div>
+                        </td>
+                        <td>
+                            <!-- quantity field -->
+                            <div class="form-group quantity">
+                              <input type="number" name="sendQuantity[]" class="form-control assetQuantity" step="any" min="0" placeholder="Quantity" data-i18n="[placeholder]quantity" tabindex="104">
+                            </div>
+                        </td>
+                        <td>
+                            <!-- add / remove row buttons -->
+                            <button type="button" class="quackAddRow btn btn-primary s" data-i18n="AddRow">
+                              <span><i class="fa fa-plus"></i></span></button>
+                            <button type="button" class="quackRemoveRow btn btn-danger s" data-i18n="RemoveRow" style="display:none;">
+                              <span><i class="fa fa-minus"></i></span></button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Receive Part -->
+              <div class="col-md-12 quackForm" id="quackRecieveForm">
+                <div class="box box-primary r">
+                  <div class="box-header"><h3 class="box-title" data-i18n="recieve">Receive</h3></div>
+                  <div class="box-body no-padding">
+                    <table class="table table-striped">
+                      <thead><tr>
+                          <th style="width:25%">Asset type</th>
+                          <th style="width:40%">Asset ID / Currency ID</th>
+                          <th style="width:25%">Quantity</th>
+                          <th style="width:10%">Row</th>
+                      </tr></thead>
+                      <tbody>
+                        <tr class="r0">
+                          <td>
+                              <!-- asset type dropdown -->
+                              <div class="form-group assetType">
+                                <select class="form-control" name="quackCreateAssetTypeName" id="r0" tabindex="501">
+                                  <option value="NXT" data-i18n="nxt">NXT</option>
+                                  <option value="A" data-i18n="asset">Asset</option>
+                                  <option value="M" data-i18n="currency">Currency</option>
+                                </select>
+                              </div>
+                          </td>
+                          <td>
+                              <!-- asset field -->
+                              <div class="form-group assetTypeA" style="display:none;">
+                                <input type="text" class="form-control assetIdA" name="recieveAsset[]" placeholder="Asset ID" data-i18n="[placeholder]asset" tabindex="502" />
+                              </div>
+                              <!-- currency field -->
+                              <div class="form-group assetTypeM" style="display:none">
+                                <input type="text" class="form-control assetIdM" name="recieveCurrency[]" placeholder="Currency" data-i18n="[placeholder]currency" tabindex="503" />
+                              </div>
+                          </td>
+                          <td>
+                              <!-- quantity field -->
+                              <div class="form-group quantity">
+                                <input type="number" name="recieveQuantity[]" class="form-control assetQuantity" step="any" min="0" placeholder="Quantity" data-i18n="[placeholder]quantity" tabindex="504">
+                              </div>
+                          </td>
+                          <td>
+                              <!-- add / remove row buttons -->
+                              <button type="button" class="quackAddRow btn btn-primary r" data-i18n="AddRow">
+                                <span><i class="fa fa-plus"></i></span></button>
+                              <button type="button" class="quackRemoveRow btn btn-danger r" data-i18n="RemoveRow" style="display:none;">
+                                <span><i class="fa fa-minus"></i></span></button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- add message -->
+            <div class="form-group add_message_container" style="margin-bottom: 5px;">
+                <input type="checkbox" name="add_message" id="quack_create_add_message" class="add_message" tabindex="980">
+                <label for="quack_create_add_message" style="font-weight:normal;margin-bottom:0;">
+                    <span data-i18n="add_message_q">Add a private Message?</span></label>
+            </div>
+            <div class="form-group optional_message" style="display: none;">
+                <label for="quack_create_message" data-i18n="message">Message</label>
+                <textarea class="form-control" id="quack_create_message" name="message" rows="4" tabindex="981"></textarea>
+            </div>
+
+            <!-- calculate fee -->
+            <div class="row" style="display:none;">
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <label for="quack_create_fee" data-i18n="fee">Fee</label>
+                        <button type="button" class="btn btn-info btn-xs btn-calculate-fee" data-loading-text="Calculating..." data-i18n="[data-loading-text]calculating">
+                          <span data-i18n="calculate">Calculate</span><span class="warning-label" id="quack_create_recalc"> *</span></button>
+                        <div class="input-group">
+                            <input type="number" name="feeNXT" id="quack_create_fee" class="form-control" step="any" placeholder="Minimum Fee" data-i18n="[placeholder]minimum_fee" tabindex="990">
+                            <span class="input-group-addon">NXT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- secret phrase field -->
+            <div class="form-group secret_phrase">
+              <label for="quackCreatePassword" data-i18n="passphrase">Passphrase</label>
+              <input type="password" name="secretPhrase" id="quackCreatePassword" class="form-control" placeholder="" tabindex="999">
+            </div>
+
+          </form>
+        </div>
+        <div class="modal-footer" style="margin-top:0;">
+          <div class="advanced_info"><strong data-i18n="fee">Fee</strong>: <span class="advanced_fee" id="quack_create_fee2">1 NXT</span></div>
+          <button type="button" class="btn btn-default" data-dismiss="modal" tabindex="1020">Close</button>
+          <button type="button" class="btn btn-primary" data-loading-text="Submitting..." onclick="submitQuackCreate();" tabindex="1010">Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quack Accept modal -->
+  <div id="quackAcceptModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Accept Quack</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form" id="quackAcceptForm" autocomplete="off">
+            <div class="callout callout-danger error_message" style="display:none"></div>
+
+            <!-- swap group -->
+            <div class="row">
+
+            <!-- Send Part -->
+            <div class="col-md-12 quackDetails">
+              <div class="box box-primary s">
+                <div class="box-header"><h3 class="box-title" data-i18n="send">Send</h3></div>
+                <div class="box-body no-padding">
+
+                    <table class="table table-striped" id="quackAcceptSendAssetsTable">
+                      <thead>
+                        <tr>
+                          <th data-i18n="asset">Asset ID</th>
+                          <th data-i18n="type" class="text-center">Type</th>
+                          <th data-i18n="quantity" class="text-right">Quantity</th>
+                          <th data-i18n="confirmations" class="text-right">Conf.</th>
+                          <th data-i18n="status" class="text-center">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                      </tbody>
+                    </table>
+
+              </div><!--end of box-body -->
+              </div><!--end of box -->
+            </div><!--end of quackSwapDetails -->
+
+            <!-- Send Part -->
+            <div class="col-md-12 quackDetails">
+              <div class="box box-primary r">
+                <div class="box-header"><h3 class="box-title" data-i18n="recieve">Recieve</h3></div>
+                <div class="box-body no-padding">
+
+                    <table class="table table-striped" id="quackAcceptReceiveAssetsTable">
+                      <thead>
+                        <tr>
+                          <th data-i18n="asset">Asset ID</th>
+                          <th data-i18n="type" class="text-center">Type</th>
+                          <th data-i18n="quantity" class="text-right">Quantity</th>
+                          <th data-i18n="confirmations" class="text-right">Conf.</th>
+                          <th data-i18n="status" class="text-center">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                      </tbody>
+                    </table>
+
+                  </div><!--end of .box-body -->
+                </div><!--end of .box -->
+              </div><!--end of .quackDetails  -->
+            </div><!--end of .row  -->
+
+            <!-- secret phrase field -->
+            <div class="form-group secret_phrase">
+              <label for="quackAcceptPassword" data-i18n="passphrase">Passphrase</label>
+              <input type="password" name="secretPhrase" id="quackAcceptPassword" class="form-control" placeholder="" tabindex="111">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <div class="advanced_info"><strong data-i18n="fee">Fee</strong>: <span class="advanced_fee" id="quack_create_fee3">? NXT</span></div>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-loading-text="Submitting..." onclick="submitQuackAccept();">Accept</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quack Finalize modal -->
+  <div id="quackFinalizeModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Accept Quack</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form" id="quackFinalizeForm" autocomplete="off">
+            <div class="callout callout-danger error_message" style="display:none"></div>
+
+            <!-- swap group -->
+            <div class="row">
+
+            <!-- Send Part -->
+            <div class="col-md-12 quackDetails">
+              <div class="box box-primary s">
+                <div class="box-header"><h3 class="box-title" data-i18n="send">Send</h3></div>
+                <div class="box-body no-padding">
+
+                    <table class="table table-striped" id="quackFinalizeSendAssetsTable">
+                      <thead>
+                        <tr>
+                          <th data-i18n="asset">Asset ID</th>
+                          <th data-i18n="type" class="text-center">Type</th>
+                          <th data-i18n="quantity" class="text-right">Quantity</th>
+                          <th data-i18n="confirmations" class="text-right">Conf.</th>
+                          <th data-i18n="status" class="text-center">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                      </tbody>
+                    </table>
+
+              </div><!--end of box-body -->
+              </div><!--end of box -->
+            </div><!--end of quackSwapDetails -->
+
+            <!-- Send Part -->
+            <div class="col-md-12 quackDetails">
+              <div class="box box-primary r">
+                <div class="box-header"><h3 class="box-title" data-i18n="recieve">Recieve</h3></div>
+                <div class="box-body no-padding">
+
+                    <table class="table table-striped" id="quackFinalizeReceiveAssetsTable">
+                      <thead>
+                        <tr>
+                          <th data-i18n="asset">Asset ID</th>
+                          <th data-i18n="type" class="text-center">Type</th>
+                          <th data-i18n="quantity" class="text-right">Quantity</th>
+                          <th data-i18n="confirmations" class="text-right">Conf.</th>
+                          <th data-i18n="status" class="text-center">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                      </tbody>
+                    </table>
+
+                  </div><!--end of .box-body -->
+                </div><!--end of .box -->
+              </div><!--end of .quackDetails  -->
+            </div><!--end of .row  -->
+
+            <!-- secret phrase field -->
+            <div class="form-group secret_phrase">
+              <label for="quackFinalizePassword" data-i18n="passphrase">Passphrase</label>
+              <input type="password" name="secretPhrase" id="quackFinalizePassword" class="form-control" placeholder="" tabindex="111">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer" style="margin-top:0;">
+          <div class="advanced_info"><strong data-i18n="fee">Fee</strong>: <span class="advanced_fee" id="quack_create_fee4">1 NXT</span></div>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-loading-text="Submitting..." onclick="submitQuackTrigger();">Accept</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Quack Details modal -->
+<div id="quackDetailsModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Quack Details</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form" id="quackDetailsForm" autocomplete="off">
+          <div class="callout callout-danger error_message" style="display:none"></div>
+
+          <!-- swap group -->
+          <div class="row">
+
+          <!-- Send Part -->
+          <div class="col-md-12 quackDetails">
+            <div class="box box-primary s">
+              <div class="box-header"><h3 class="box-title" data-i18n="send">Send</h3></div>
+              <div class="box-body no-padding">
+
+                  <table class="table table-striped" id="quackSendAssetsTable">
+                    <thead>
+                      <tr>
+                        <th data-i18n="asset">Asset ID</th>
+                        <th data-i18n="type" class="text-center">Type</th>
+                        <th data-i18n="quantity" class="text-right">Quantity</th>
+                        <th data-i18n="confirmations" class="text-right">Conf.</th>
+                        <th data-i18n="status" class="text-center">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                  </table>
+
+            </div><!--end of box-body -->
+            </div><!--end of box -->
+          </div><!--end of quackSwapDetails -->
+
+          <!-- Send Part -->
+          <div class="col-md-12 quackDetails">
+            <div class="box box-primary r">
+              <div class="box-header"><h3 class="box-title" data-i18n="recieve">Recieve</h3></div>
+              <div class="box-body no-padding">
+
+                  <table class="table table-striped" id="quackReceiveAssetsTable">
+                    <thead>
+                      <tr>
+                        <th data-i18n="asset">Asset ID</th>
+                        <th data-i18n="type" class="text-center">Type</th>
+                        <th data-i18n="quantity" class="text-right">Quantity</th>
+                        <th data-i18n="confirmations" class="text-right">Conf.</th>
+                        <th data-i18n="status" class="text-center">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                  </table>
+
+                </div><!--end of .box-body -->
+              </div><!--end of .box -->
+            </div><!--end of .quackDetails  -->
+          </div><!--end of .row  -->
+
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!--end of .modal-body -->
+    </div><!--end of .modal-content -->
+  </div><!--end of .modal-dialog -->
+</div><!--end of .modal -->
